@@ -67,7 +67,8 @@ const SignUpForm = ({
   checkIn,
   resetState
 }) => {
-  const handleSignUp = async () => {
+  const handleSignUp = async e => {
+    e.preventDefault();
     const ref = app
       .firestore()
       .collection("users")
