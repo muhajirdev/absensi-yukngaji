@@ -9,6 +9,7 @@ module.exports = {
       resolve: `gatsby-plugin-create-client-paths`,
       options: { prefixes: [`/kajian/*`] }
     },
+    `gatsby-plugin-material-ui`,
     `gatsby-plugin-styled-components`,
     "gatsby-plugin-tailwindcss",
     `gatsby-plugin-react-helmet`,
