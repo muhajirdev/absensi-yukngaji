@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { StaticQuery, graphql } from "gatsby";
-import { Grommet } from "grommet";
 
 import Header from "./header";
 import "./layout.css";
@@ -37,11 +36,7 @@ const Layout = ({ children }) => (
       }
     `}
     render={data => (
-      <>
-        <Grommet>
-          <main style={{ minHeight: "100vh", height: 0 }}>{children}</main>
-        </Grommet>
-      </>
+        <main style={{ minHeight: "100vh", height: 0 }}>{children}</main>
     )}
   />
 );
