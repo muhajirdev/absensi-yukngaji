@@ -23,6 +23,8 @@ const app = getFirebaseApp();
 export default props => {
   const [kajian, setKajian] = useState();
   const [regional, setRegional] = useState();
+  const [locationName, setLocationName] = useState();
+  const [speakerName, setSpeakerName] = useState();
   const refKajian = app
     .firestore()
     .collection("kajian")
@@ -31,6 +33,8 @@ export default props => {
   docData(refKajian).subscribe(data => {
     setKajian(data.title);
     setRegional(data.regional);
+    setLocationName(data.locationName);
+    setSpeakerName(data.speakerName);
   });
   return (
     <Grid fluid height="100vh" gutter={0}>
@@ -39,6 +43,15 @@ export default props => {
           <Logo />
           <Typography variant="h2" color="white">
             {kajian}
+          </Typography>
+          <Typography variant="h2" color="white">
+            {regional}
+          </Typography>
+          <Typography variant="h2" color="white">
+            {locationName}
+          </Typography>
+          <Typography variant="h2" color="white">
+            {speakerName}
           </Typography>
         </Col>
         <Col xs={8} gutter={0}>
@@ -89,12 +102,6 @@ const SignUpForm = ({
         label="Name"
         value={name}
         onChange={e => setName(e.target.value)}
-      />
-      <TextField
-        variant="outlined"
-        label="Email"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
       />
       <TextField
         variant="outlined"
