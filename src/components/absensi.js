@@ -92,7 +92,7 @@ const SignUpForm = ({
       domisili,
       phone
     });
-    await checkIn();
+    await checkIn({ firstTime: true });
     resetState();
   };
   return (
@@ -128,7 +128,7 @@ const LoginForm = ({ setPage, setEmail, email, resetState, checkIn }) => {
       .doc(email);
     const userExist = await ref.get().then(item => item.exists);
     if (userExist) {
-      await checkIn();
+      await checkIn({ firstTime: false });
       resetState();
     } else {
       setPage("register");
@@ -192,13 +192,14 @@ export function Form(props) {
     setPage("login");
   };
 
-  const checkIn = () => {
+  const checkIn = ({ firstTime }) => {
     const ref = app
       .firestore()
       .collection("absensi")
       .add({
         user: email,
-        kajian: props.id
+        kajian: props.id,
+        firstTime
       });
   };
 
