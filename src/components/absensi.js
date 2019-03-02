@@ -24,7 +24,7 @@ export default props => {
   const [kajian, setKajian] = useState();
   const [regional, setRegional] = useState();
   const [locationName, setLocationName] = useState();
-  const [speakerName, setSpeakerName] = useState();
+  const [speakers, setSpeakers] = useState([]);
   const refKajian = app
     .firestore()
     .collection("kajian")
@@ -34,25 +34,29 @@ export default props => {
     setKajian(data.title);
     setRegional(data.regional);
     setLocationName(data.locationName);
-    setSpeakerName(data.speakerName);
+    setSpeakers(data.speakers);
   });
   return (
     <Grid fluid height="100vh" gutter={0}>
       <Row height="100%">
         <Col xs={4} backgroundColor="#5ac6d0" gutter={10}>
-          <Logo />
-          <Typography variant="h2" color="white">
-            {kajian}
-          </Typography>
-          <Typography variant="h2" color="white">
-            {regional}
-          </Typography>
-          <Typography variant="h2" color="white">
-            {locationName}
-          </Typography>
-          <Typography variant="h2" color="white">
-            {speakerName}
-          </Typography>
+          <Box mx="auto" width="75%">
+            <Logo />
+            <Typography variant="h2" color="white">
+              {kajian}
+            </Typography>
+            <Typography variant="h2" color="white">
+              {regional}
+            </Typography>
+            <Typography variant="h2" color="white">
+              {locationName}
+            </Typography>
+            {speakers.map(speaker => (
+              <Typography variant="h5" color="white">
+                {speaker}
+              </Typography>
+            ))}
+          </Box>
         </Col>
         <Col xs={8} gutter={0}>
           <Form id={props.id} />
@@ -63,7 +67,7 @@ export default props => {
 };
 
 const Logo = () => (
-  <Box width={0.8} mx="auto">
+  <Box mx="auto">
     <img src={require("../images/logoYukNgaji.jpg")} />
   </Box>
 );
