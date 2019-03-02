@@ -32,6 +32,7 @@
     "react-helmet": "^5.2.0",
     "react-jss": "^8.6.1",
     "react-spring": "^8.0.7",
+    "react-toastify": "^4.5.2",
     "rebass": "^3.0.1",
     "rxfire": "^3.3.4",
     "rxjs": "^6.4.0",

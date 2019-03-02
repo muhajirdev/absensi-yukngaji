@@ -8,6 +8,8 @@ import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import { Grid, Row, Col, Box, Typography } from "@smooth-ui/core-sc";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import styled from "styled-components";
 
@@ -41,6 +43,7 @@ export default props => {
 
   return (
     <Grid fluid height="100vh" gutter={0}>
+      <ToastContainer autoClose={2000} />
       <Row height="100%">
         <Col xs={4} backgroundColor="#5ac6d0" gutter={10}>
           <Box mx="auto" width="75%">
@@ -133,8 +136,8 @@ const LoginForm = ({ setPage, setEmail, email, resetState, checkIn }) => {
       .firestore()
       .collection("users")
       .doc(email);
-    const userExist = await ref.get().then(item => item.exists);
-    if (userExist) {
+    const user = await ref.get();
+    if (user.exists) {
       await checkIn({ firstTime: false });
       resetState();
     } else {
@@ -207,7 +210,8 @@ export function Form(props) {
         user: email,
         kajian: props.id,
         firstTime
-      });
+      })
+      .then(() => toast("Absen berhasil"));
   };
 
   return (
