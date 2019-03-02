@@ -30,12 +30,15 @@ export default props => {
     .collection("kajian")
     .doc(props.id);
 
-  docData(refKajian).subscribe(data => {
-    setKajian(data.title);
-    setRegional(data.regional);
-    setLocationName(data.locationName);
-    setSpeakers(data.speakers);
-  });
+  useState(() => {
+    docData(refKajian).subscribe(data => {
+      setKajian(data.title);
+      setRegional(data.regional);
+      setLocationName(data.locationName);
+      setSpeakers(data.speakers);
+    });
+  }, []);
+
   return (
     <Grid fluid height="100vh" gutter={0}>
       <Row height="100%">
