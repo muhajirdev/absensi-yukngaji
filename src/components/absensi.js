@@ -52,7 +52,7 @@ export default props => {
               {locationName}
             </Typography>
             {speakers.map(speaker => (
-              <Typography variant="h5" color="white">
+              <Typography key={speaker} variant="h5" color="white">
                 {speaker}
               </Typography>
             ))}
