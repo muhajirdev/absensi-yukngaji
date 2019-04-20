@@ -7,7 +7,7 @@ import Absensi from "../components/absensi";
 export default function() {
   return (
     <Router>
-      <Absensi path="/kajian/:id" />
+      <Absensi path="/kajian/:id/:gender" />
     </Router>
   );
 }

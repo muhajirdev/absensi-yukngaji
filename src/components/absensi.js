@@ -65,7 +65,7 @@ export default props => {
           </Box>
         </Col>
         <Col xs={8} gutter={0}>
-          <Form id={props.id} />
+          <Form id={props.id} gender={props.gender} />
         </Col>
       </Row>
     </Grid>
@@ -88,7 +88,8 @@ const SignUpForm = ({
   phone,
   setPhone,
   checkIn,
-  resetState
+  resetState,
+  gender
 }) => {
   const handleSignUp = async e => {
     e.preventDefault();
@@ -100,7 +101,8 @@ const SignUpForm = ({
       name,
       email,
       domisili,
-      phone
+      phone,
+      gender
     });
     await checkIn({ firstTime: true });
     resetState();
@@ -239,6 +241,7 @@ export function Form(props) {
               resetState={resetState}
               checkIn={checkIn}
               setPage={setPage}
+              gender={props.gender}
             />
           )}
         </Card>
